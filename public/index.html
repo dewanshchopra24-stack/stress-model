@@ -55,6 +55,10 @@
     50%{background-position:100% 40%;}
     100%{background-position:0% 0%;}
   }
+  #galaxy{
+    position:fixed; inset:0; width:100%; height:100%;
+    z-index:0; pointer-events:none; display:block;
+  }
   #scene{
     position:fixed; inset:0; width:100%; height:100%;
     z-index:0; pointer-events:none;
@@ -149,6 +153,19 @@
     background:rgba(99,102,241,.10); padding:5px 10px; border-radius:99px; margin-bottom:14px;
   }
   .qtext{font-size:clamp(17px,3.6vw,19px); line-height:1.4; font-weight:600; font-family:'Space Grotesk', sans-serif;}
+  .card.question-zoom{ animation:questionZoom .55s cubic-bezier(.2,1.4,.4,1); transform-origin:center center; }
+  @keyframes questionZoom{
+    0%{ opacity:0; transform:scale(.78) translateY(14px); filter:blur(6px); }
+    55%{ opacity:1; filter:blur(0); }
+    100%{ opacity:1; transform:scale(1) translateY(0); filter:blur(0); }
+  }
+  .progress-track{ position:relative; }
+  .progress-fill{ position:relative; box-shadow:0 0 10px 1px rgba(99,102,241,0.55); }
+  .progress-fill::after{
+    content:''; position:absolute; right:-2px; top:50%; transform:translateY(-50%);
+    width:8px; height:8px; border-radius:50%; background:#fff;
+    box-shadow:0 0 8px 3px rgba(255,255,255,0.9);
+  }
   .exam-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px;}
   .exam-opt{
     padding:16px 10px; text-align:center; border-radius:14px;
@@ -178,17 +195,33 @@
   }
   .tips-list{margin:10px 0 0; padding-left:18px; font-size:14px; line-height:1.7; color:var(--ink);}
   .yt-card{
-    display:flex; align-items:center; gap:12px; padding:12px 14px; margin-top:10px;
-    border:1.5px solid var(--line); border-radius:14px; text-decoration:none; color:var(--ink);
-    transition:border-color .15s, background .15s;
+    display:flex; align-items:center; gap:12px; padding:9px; margin-top:10px;
+    border:1.5px solid var(--line); border-radius:16px; text-decoration:none; color:var(--ink);
+    background:#FDFCFF;
+    transition:border-color .18s, background .18s, transform .18s, box-shadow .18s;
   }
-  .yt-card:hover{border-color:var(--coral); background:#FFF0F2;}
+  .yt-card:hover{border-color:var(--coral); background:#FFF0F2; transform:translateY(-2px); box-shadow:0 10px 22px rgba(245,69,92,0.16);}
+  .yt-thumb{
+    flex-shrink:0; width:104px; height:64px; border-radius:10px; overflow:hidden;
+    position:relative; background:#171623;
+  }
+  .yt-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+  .yt-play{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  }
+  .yt-play span{
+    width:30px; height:30px; border-radius:50%; background:rgba(0,0,0,0.55);
+    display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px;
+    transition:transform .18s, background .18s; backdrop-filter:blur(1px);
+  }
+  .yt-card:hover .yt-play span{ transform:scale(1.15); background:var(--coral); }
   .yt-icon{
     flex-shrink:0; width:34px; height:34px; border-radius:9px; background:var(--coral);
     display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px;
   }
   .yt-title{font-size:13.5px; font-weight:600; line-height:1.35;}
-  .yt-sub{font-size:11.5px; color:var(--ink-soft); margin-top:2px;}
+  .yt-sub{font-size:11.5px; color:var(--ink-soft); margin-top:3px; display:flex; align-items:center; gap:4px;}
+  .yt-sub svg{flex-shrink:0;}
   .footer-note{font-size:12px; color:var(--ink-soft); line-height:1.6; margin-top:22px; padding-top:16px; border-top:1px solid var(--line);}
   canvas{max-width:100%;}
   .dash-row{display:flex; align-items:center; justify-content:space-between; gap:10px;}
@@ -209,11 +242,16 @@
   table.routine td.time{width:120px; color:var(--teal-dark); font-family:'IBM Plex Mono', monospace; font-weight:600; white-space:nowrap;}
   .routine-note{margin-top:12px; font-size:13px; line-height:1.6; color:var(--ink-soft); padding-top:10px; border-top:1px dashed var(--line);}
   .boost-card{
-    margin-top:10px; padding:16px; border-radius:16px; text-decoration:none; display:block;
+    margin-top:10px; padding:12px; border-radius:18px; text-decoration:none; display:flex; gap:14px; align-items:center;
     background:linear-gradient(135deg, rgba(99,102,241,0.14), rgba(245,158,11,0.14));
-    border:1.5px solid var(--marigold); color:var(--ink); transition:transform .1s ease;
+    border:1.5px solid var(--marigold); color:var(--ink); transition:transform .18s ease, box-shadow .18s ease;
   }
-  .boost-card:hover{transform:translateY(-1px);}
+  .boost-card:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(245,158,11,0.22);}
+  .boost-thumb{
+    flex-shrink:0; width:120px; height:74px; border-radius:12px; overflow:hidden; position:relative; background:#171623;
+  }
+  .boost-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+  .boost-thumb .yt-play span{width:32px; height:32px; font-size:12px;}
   .boost-title{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:15px;}
   .boost-sub{font-size:12.5px; color:var(--ink-soft); margin-top:3px;}
   @media (max-width:480px){
@@ -222,10 +260,12 @@
   @media (prefers-reduced-motion: reduce){
     body{animation:none;}
     .card{animation:none;}
+    .card.question-zoom{animation:none;}
   }
 </style>
 </head>
 <body>
+<canvas id="galaxy" aria-hidden="true"></canvas>
 <div id="scene" aria-hidden="true">
 <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMax slice" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -280,6 +320,119 @@
 <div id="app"></div>
 
 <script>
+/* ============ GALAXY PARTICLE BACKGROUND (canvas, no external assets) ============ */
+(function(){
+  const canvas = document.getElementById('galaxy');
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W=0, H=0, DPR=1;
+  let particles = [];
+  let drifters = [];
+  let mouseX = 0.5, mouseY = 0.5;
+  let targetMouseX = 0.5, targetMouseY = 0.5;
+  let t0 = performance.now();
+
+  function resize(){
+    DPR = Math.min(window.devicePixelRatio||1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W*DPR; canvas.height = H*DPR;
+    canvas.style.width = W+'px'; canvas.style.height = H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    buildGalaxy();
+  }
+
+  function buildGalaxy(){
+    const count = Math.max(90, Math.min(240, Math.round((W*H)/9000)));
+    const cx = W*0.72, cy = H*0.22; // galaxy core sits upper-right, echoing the moon
+    const arms = 3;
+    particles = [];
+    for(let i=0;i<count;i++){
+      const armIndex = i % arms;
+      const armOffset = (armIndex/arms) * Math.PI*2;
+      const dist = Math.pow(Math.random(), 0.55) * (Math.max(W,H)*0.62);
+      const spin = dist * 0.006;
+      const angle = armOffset + spin + (Math.random()-0.5)*0.9;
+      const hueSet = [ '99,102,241', '245,158,11', '245,69,92', '255,255,255', '16,185,129' ];
+      particles.push({
+        cx, cy, dist, angle,
+        baseAngle: angle,
+        speed: (0.00006 + Math.random()*0.00010) * (Math.random()<0.5?1:-1),
+        r: Math.random()*1.6 + 0.4,
+        color: hueSet[Math.floor(Math.random()*hueSet.length)],
+        twinklePhase: Math.random()*Math.PI*2,
+        twinkleSpeed: 0.0012 + Math.random()*0.0022,
+        parallax: 6 + Math.random()*22
+      });
+    }
+    // a few slow independent drifting motes across the whole viewport for depth
+    drifters = [];
+    const driftCount = Math.round(count*0.25);
+    for(let i=0;i<driftCount;i++){
+      drifters.push({
+        x: Math.random()*W, y: Math.random()*H,
+        vx: (Math.random()-0.5)*0.012, vy: (Math.random()-0.5)*0.008,
+        r: Math.random()*1.2+0.3, o: Math.random()*0.5+0.15
+      });
+    }
+  }
+
+  function frame(now){
+    const dt = now - t0; t0 = now;
+    ctx.clearRect(0,0,W,H);
+
+    mouseX += (targetMouseX-mouseX)*0.02;
+    mouseY += (targetMouseY-mouseY)*0.02;
+    const px = (mouseX-0.5), py = (mouseY-0.5);
+
+    // galaxy core glow
+    const cx = W*0.72 + px*10, cy = H*0.22 + py*8;
+    const coreGrad = ctx.createRadialGradient(cx,cy,0, cx,cy, Math.max(W,H)*0.28);
+    coreGrad.addColorStop(0, 'rgba(99,102,241,0.16)');
+    coreGrad.addColorStop(0.5, 'rgba(99,102,241,0.05)');
+    coreGrad.addColorStop(1, 'rgba(99,102,241,0)');
+    ctx.fillStyle = coreGrad;
+    ctx.fillRect(0,0,W,H);
+
+    particles.forEach(p=>{
+      if(!reduceMotion){ p.angle = p.baseAngle + now*p.speed; }
+      const x = cx + Math.cos(p.angle)*p.dist + px*p.parallax;
+      const y = cy + Math.sin(p.angle)*p.dist*0.55 + py*p.parallax*0.6;
+      const tw = reduceMotion ? 0.8 : (0.55 + Math.sin(now*p.twinkleSpeed + p.twinklePhase)*0.45);
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(${p.color},${(0.35+tw*0.5).toFixed(2)})`;
+      ctx.arc(x,y,p.r*(0.8+tw*0.5),0,Math.PI*2);
+      ctx.fill();
+    });
+
+    if(!reduceMotion){
+      drifters.forEach(d=>{
+        d.x += d.vx*dt; d.y += d.vy*dt;
+        if(d.x<-10) d.x=W+10; if(d.x>W+10) d.x=-10;
+        if(d.y<-10) d.y=H+10; if(d.y>H+10) d.y=-10;
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,255,255,${d.o})`;
+        ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+        ctx.fill();
+      });
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize, {passive:true});
+  window.addEventListener('pointermove', (e)=>{
+    targetMouseX = e.clientX / W; targetMouseY = e.clientY / H;
+  }, {passive:true});
+  window.addEventListener('deviceorientation', (e)=>{
+    if(e.gamma==null) return;
+    targetMouseX = Math.min(1, Math.max(0, 0.5 + e.gamma/45));
+    targetMouseY = Math.min(1, Math.max(0, 0.5 + e.beta/90));
+  }, {passive:true});
+
+  resize();
+  requestAnimationFrame(frame);
+})();
+
 /* ============ AUDIO (no external files — generated in-browser) ============ */
 let audioCtx = null;
 function ensureAudio(){
@@ -298,6 +451,26 @@ function playClick(){
     g.gain.exponentialRampToValueAtTime(0.0001, t + 0.07);
     o.connect(g).connect(audioCtx.destination);
     o.start(t); o.stop(t + 0.08);
+  }catch(e){}
+}
+function playZoom(){
+  try{
+    ensureAudio();
+    const t = audioCtx.currentTime;
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    const filt = audioCtx.createBiquadFilter();
+    filt.type = 'lowpass';
+    filt.frequency.setValueAtTime(500, t);
+    filt.frequency.exponentialRampToValueAtTime(3200, t+0.22);
+    o.type = 'sine';
+    o.frequency.setValueAtTime(260, t);
+    o.frequency.exponentialRampToValueAtTime(720, t+0.22);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.07, t+0.05);
+    g.gain.exponentialRampToValueAtTime(0.0001, t+0.26);
+    o.connect(filt).connect(g).connect(audioCtx.destination);
+    o.start(t); o.stop(t+0.28);
   }catch(e){}
 }
 function playChime(){
@@ -438,38 +611,38 @@ function applyPersona(q){
 const catMeta = {
   sleep:{ label:'Sleep & Rest', color:'#6366F1',
     tips:['Fix one lights-off time and stick to it, even on off days.','Keep your phone outside arm\'s reach for the last 30 minutes before bed.','If you can\'t fall asleep in 20 minutes, get up and do something calm rather than lying there stressing.'],
-    videos:[{q:'how to fix sleep schedule during exam preparation', t:'Fixing your sleep schedule during exam prep'},{q:'5 minute sleep meditation for students', t:'5-minute wind-down meditation'}] },
+    videos:[{id:'0tLRhxmjnp4', t:'Fix your sleep schedule to learn better (science-backed)'},{id:'euCACO-KtHE', t:'10-minute guided wind-down meditation for students'}] },
   study:{ label:'Effort & Time Pressure', color:'#F59E0B',
     tips:['Break study blocks using the Pomodoro method — 25 minutes on, 5 off.','Track effort (hours, topics covered) instead of only comparing rank or marks with others.','Plan one realistic, revisable weekly target instead of an all-or-nothing daily one.'],
-    videos:[{q:'pomodoro technique for NEET JEE preparation', t:'Time management for NEET/JEE prep'},{q:'how to deal with study burnout students', t:'Recovering from study burnout'}] },
+    videos:[{id:'6SO038ZVH7I', t:'Mastering the Pomodoro technique for exam prep'},{id:'qd_mRapoPtg', t:'How to deal with student burnout'}] },
   family:{ label:'Family & Social Pressure', color:'#F5455C',
     tips:['Try one honest, calm conversation with a parent about how the pressure actually feels.','It\'s okay to politely redirect nosy questions from relatives — you don\'t owe anyone a progress report.','Your worth isn\'t your rank — remind yourself of that on hard days.'],
-    videos:[{q:'how to talk to parents about exam pressure', t:'Talking to parents about exam pressure'},{q:'dealing with family expectations students', t:'Handling family expectations'}] },
+    videos:[{id:'n_Xn1Nt5f0c', t:'Supporting your child through exam stress'},{id:'Sa41YQkZZaI', t:'7 tips to manage exam pressure and stress'}] },
   health:{ label:'Physical & Emotional Health', color:'#14B8A6',
     tips:['Don\'t skip meals — even a short, regular eating routine steadies your energy and mood.','Ten minutes of stretching or a short walk between study blocks helps more than it seems.','Notice irritability or tears as signals your body is asking for a break, not as weakness.'],
-    videos:[{q:'5 minute breathing exercise for exam anxiety', t:'Quick breathing exercise for anxiety'},{q:'quick stretching routine for students', t:'Desk-stretch routine for students'}] },
+    videos:[{id:'IW8HLrbYPew', t:'5-minute breathing exercise for anxiety relief'},{id:'kdLSJuzRNUw', t:'5-minute desk stretches — no need to get up'}] },
   coping:{ label:'Coping & Support System', color:'#0EA5E9',
     tips:['Identify one person — friend, teacher, mentor, counsellor — you can be fully honest with.','Protect one small non-negotiable relaxing activity every day, even 15 minutes.','After a bad test, separate the score from your self-worth: it measures a day, not you.'],
-    videos:[{q:'guided meditation for exam stress relief', t:'Guided meditation for exam stress'},{q:'motivational talk for NEET JEE aspirants', t:'A motivational reset for aspirants'}] }
+    videos:[{id:'dJUTMSq4ldo', t:'Guided meditation for exam stress relief'},{id:'8-nD-NRq5xo', t:'A motivational boost for NEET/JEE aspirants'}] }
 };
 
 /* Persona-specific overrides so tips/videos speak to the right context — a working
    professional shouldn't see "books" or "NEET JEE" advice, and vice versa. */
 const catMetaOverrides = {
   'Job / Business': {
-    sleep:{ videos:[{q:'how to fix sleep schedule for working professionals', t:'Fixing your sleep schedule while working'},{q:'5 minute sleep meditation for working adults', t:'5-minute wind-down meditation'}] },
+    sleep:{ videos:[{id:'0tLRhxmjnp4', t:'Fixing your sleep schedule while working (science-backed)'},{id:'euCACO-KtHE', t:'10-minute wind-down meditation for working adults'}] },
     study:{
       tips:['Break work blocks using the Pomodoro method — 25 minutes on, 5 off.','Track effort (hours, tasks completed) instead of only comparing income or growth with others.','Plan one realistic, revisable weekly target instead of an all-or-nothing daily one.'],
-      videos:[{q:'pomodoro technique for productivity at work', t:'Time management for work/business'},{q:'how to deal with work burnout professionals', t:'Recovering from work burnout'}] },
-    family:{ videos:[{q:'how to talk to family about work pressure', t:'Talking to family about work pressure'},{q:'dealing with family expectations career', t:'Handling family expectations around your career'}] },
-    health:{ videos:[{q:'5 minute breathing exercise for work anxiety', t:'Quick breathing exercise for anxiety'},{q:'quick stretching routine for office workers', t:'Desk-stretch routine for the workday'}] },
+      videos:[{id:'aQ_xKuXo0D0', t:'The Pomodoro technique explained for productivity'},{id:'Qa0n_BTzAeY', t:'Stop chasing work-life balance — do this instead'}] },
+    family:{ videos:[{id:'n_Xn1Nt5f0c', t:'Talking to family about work pressure'},{id:'Sa41YQkZZaI', t:'Handling family expectations around your career'}] },
+    health:{ videos:[{id:'IW8HLrbYPew', t:'5-minute breathing exercise for work anxiety'},{id:'kdLSJuzRNUw', t:'5-minute desk-stretch routine for the workday'}] },
     coping:{
       tips:['Identify one person — friend, mentor, colleague, counsellor — you can be fully honest with.','Protect one small non-negotiable relaxing activity every day, even 15 minutes.','After a tough day or a lost deal, separate the outcome from your self-worth: it measures a day, not you.'],
-      videos:[{q:'guided meditation for work stress relief', t:'Guided meditation for work stress'},{q:'motivational talk for entrepreneurs professionals', t:'A motivational reset for your work journey'}] }
+      videos:[{id:'dJUTMSq4ldo', t:'Guided meditation for work stress'},{id:'4c_xYLwOx-g', t:'3 rules for a better work-life balance (TED series)'}] }
   },
   'College Student':{
-    study:{ videos:[{q:'pomodoro technique for college exam preparation', t:'Time management for college exams'},{q:'how to deal with study burnout college students', t:'Recovering from study burnout'}] },
-    coping:{ videos:[{q:'guided meditation for exam stress relief', t:'Guided meditation for exam stress'},{q:'motivational talk for college students', t:'A motivational reset for college life'}] }
+    study:{ videos:[{id:'6SO038ZVH7I', t:'Time management for college exams (Pomodoro)'},{id:'qd_mRapoPtg', t:'How to deal with student burnout'}] },
+    coping:{ videos:[{id:'dJUTMSq4ldo', t:'Guided meditation for exam stress'},{id:'IrHrmY4cpqo', t:'Preventing student burnout with self-care (TEDx)'}] }
   }
 };
 
@@ -602,6 +775,7 @@ function pickExam(type){
   state.examType = type;
   state.screen='question';
   state.catIdx=0; state.subIdx=0; state.answers=[];
+  playZoom();
   render();
 }
 
@@ -624,6 +798,7 @@ function answerQuestion(optIdx){
     }, 2200);
     return;
   }
+  playZoom();
   render();
 }
 
@@ -667,12 +842,12 @@ function generateRoutine(examType){
 
 function examMotivationVideo(examType){
   const map = {
-    'NEET': { q:'NEET motivation video toppers', t:'A motivational boost for your NEET prep' },
-    'JEE': { q:'JEE motivation video toppers', t:'A motivational boost for your JEE prep' },
-    'UPSC / Govt Exam': { q:'UPSC motivation video IAS toppers', t:'A motivational boost for your UPSC/Govt exam prep' },
-    'College Student': { q:'college exam motivation video students', t:'A motivational boost for your college exams' },
-    'Job / Business': { q:'career motivation video work life balance', t:'A motivational reset for your work/business journey' },
-    'Other': { q:'exam motivation video students', t:'A motivational boost for your exam prep' }
+    'NEET': { id:'8-nD-NRq5xo', t:'A motivational boost for your NEET prep' },
+    'JEE': { id:'E_mdmPkMl5U', t:'Daily routine of JEE toppers — a motivational boost' },
+    'UPSC / Govt Exam': { id:'M9POeh5pLqQ', t:'An IAS topper\'s motivational speech for UPSC aspirants' },
+    'College Student': { id:'IrHrmY4cpqo', t:'Preventing student burnout with self-care' },
+    'Job / Business': { id:'Qa0n_BTzAeY', t:'A motivational reset for your work/business journey' },
+    'Other': { id:'4c_xYLwOx-g', t:'3 rules for a better work-life balance' }
   };
   return map[examType] || map['Other'];
 }
@@ -800,7 +975,7 @@ function renderQuestion(){
   const qNum = state.catIdx*5 + state.subIdx + 1;
   const pct = Math.round((qNum-1)/25*100);
   return `
-  <div class="card">
+  <div class="card question-zoom">
     <div class="progress-wrap">
       <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
       <div class="qcount">${qNum}/25</div>
@@ -855,9 +1030,12 @@ function renderResult(){
   const videoBlock = r.topCats.map(k=>{
     const meta = getCatData(k, state.examType);
     return meta.videos.map(v=>`
-      <a class="yt-card" href="https://www.youtube.com/results?search_query=${encodeURIComponent(v.q)}" target="_blank" rel="noopener">
-        <div class="yt-icon">▶</div>
-        <div><div class="yt-title">${v.t}</div><div class="yt-sub">Search on YouTube</div></div>
+      <a class="yt-card" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+          <div class="yt-play"><span>▶</span></div>
+        </div>
+        <div><div class="yt-title">${v.t}</div><div class="yt-sub"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M4 4l16 8-16 8V4z" fill="#F5455C"/></svg>Watch on YouTube</div></div>
       </a>`).join('');
   }).join('');
 
@@ -900,9 +1078,12 @@ function renderResult(){
 
     <div style="margin-top:20px;">
       <div class="eyebrow">One more thing</div>
-      <a class="boost-card" href="https://www.youtube.com/results?search_query=${encodeURIComponent(boost.q)}" target="_blank" rel="noopener">
-        <div class="boost-title">🔥 ${boost.t}</div>
-        <div class="boost-sub">Search on YouTube</div>
+      <a class="boost-card" href="https://www.youtube.com/watch?v=${boost.id}" target="_blank" rel="noopener">
+        <div class="boost-thumb">
+          <img src="https://img.youtube.com/vi/${boost.id}/mqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+          <div class="yt-play"><span>▶</span></div>
+        </div>
+        <div><div class="boost-title">🔥 ${boost.t}</div><div class="boost-sub">Watch on YouTube</div></div>
       </a>
     </div>
 
@@ -945,6 +1126,4 @@ function drawChart(){
 checkSession();
 </script>
 </body>
-</html>
-
 </html>
