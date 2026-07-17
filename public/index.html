@@ -5,12 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>DEASTERN | StressMap — Exam Stress Check-In</title>
 
-<!-- SEO Meta Tags: yaha apne aur words add kar sakte ho comma se separate karke -->
-<meta name="description" content="<p>DEASTERN is a stress prediction platform created by Poorvi (taranagar) and Dewansh (taranagar) to help students understand and manage exam stress.</p>">
-<meta name="keywords" content="dewansh-poorvi,poorvi, POORVI, StressMap, exam stress, stress check, NEET stress, JEE stress, UPSC stress, student mental health">
-<meta name="author" content="POORVI TARANAGAR">
+<meta name="description" content="Deastern is a stress prediction and check-in tool created by Dewansh Chopra and Poorvi Taranagar, built to help students and working professionals understand and manage exam stress.">
+<meta name="keywords" content="StressMap, Poorvi Taranagar, Dewansh, exam stress, stress check, NEET stress, JEE stress, UPSC stress, student mental health">
+<meta name="author" content="Poorvi Taranagar">
 
-<!-- Open Graph tags: jab link WhatsApp/Facebook/Twitter pe share ho, tab ye preview me dikhega -->
 <meta property="og:title" content="DEASTERN | StressMap — Exam Stress Check-In">
 <meta property="og:description" content="DEASTERN's StressMap - Check your exam stress level and get a personalized reset routine.">
 <meta property="og:type" content="website">
@@ -56,8 +54,9 @@
     color:var(--ink);
     font-family:'IBM Plex Sans', sans-serif;
     display:flex;
+    flex-direction:column;
     align-items:center;
-    justify-content:center;
+    justify-content:flex-start;
     padding:28px 16px;
     position:relative;
     overflow-x:hidden;
@@ -84,12 +83,11 @@
     position:fixed; inset:0; width:100%; height:100%;
     z-index:0; pointer-events:none; display:block;
   }
-  #app{ position:relative; z-index:1; }
+  #app{ position:relative; z-index:1; width:100%; max-width:540px; }
   body.no-touch{ cursor:none; }
   body.no-touch a, body.no-touch button, body.no-touch .option, body.no-touch .exam-opt, body.no-touch .tab, body.no-touch input{ cursor:none; }
   h1,h2,h3{font-family:'Space Grotesk', sans-serif; margin:0;}
   .mono{font-family:'IBM Plex Mono', monospace;}
-  #app{width:100%; max-width:540px;}
   .card{
     background:var(--glass);
     backdrop-filter:blur(26px) saturate(160%);
@@ -289,6 +287,21 @@
   .boost-thumb .yt-play span{width:32px; height:32px; font-size:12px;}
   .boost-title{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:15px; color:var(--ink);}
   .boost-sub{font-size:12.5px; color:var(--ink-soft); margin-top:3px;}
+  /* ============ ABOUT US SECTION ============ */
+  .about-card{
+    margin-top:18px;
+  }
+  .about-avatars{display:flex; gap:10px; align-items:center; margin-top:14px;}
+  .about-avatar{
+    width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:15px; color:#fff;
+    background:linear-gradient(135deg, var(--primary), var(--secondary));
+    flex-shrink:0;
+  }
+  .about-avatar.alt{background:linear-gradient(135deg, var(--accent), var(--primary));}
+  .about-names{font-size:14px; color:var(--ink);}
+  .about-names b{font-family:'Space Grotesk', sans-serif;}
+  .about-role{font-size:12px; color:var(--ink-soft);}
   /* ============ CUSTOM CURSOR ============ */
   #cursor-dot, #cursor-ring{
     position:fixed; top:0; left:0; border-radius:50%; pointer-events:none; z-index:9999;
@@ -311,23 +324,66 @@
     .card{animation:none;}
     .card.question-zoom{animation:none;}
   }
-  .seo-heading {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
 </style>
 </head>
 <body>
 <canvas id="galaxy" aria-hidden="true"></canvas>
 <canvas id="hero3d" aria-hidden="true"></canvas>
-  <h1 class="seo-heading">Poorvi's Stress Prediction & Exam Stress Check-In,Taranagar</h1>
-   <h1 class="seo-heading">Poorvi Taranagar</h1>
 <div id="cursor-ring"></div>
 <div id="cursor-dot"></div>
 <div id="app"></div>
+
+<div id="aboutUsOverlay" onclick="if(event.target===this) toggleAboutUs()" style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(3,5,18,0.72); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:20px;">
+  <div style="background:#0B0F24; border:1px solid rgba(255,255,255,0.12); border-radius:22px; max-width:460px; width:100%; padding:28px 26px; position:relative; box-shadow:0 40px 100px rgba(0,0,0,0.55);">
+    <button onclick="toggleAboutUs()" style="position:absolute; top:14px; right:16px; background:none; border:none; color:#9AA0B4; font-size:20px; cursor:pointer; line-height:1;">&times;</button>
+    <h2 style="font-family:'Space Grotesk', sans-serif; color:#F5F6FA; margin:0 0 12px;">About StressMap</h2>
+    <p style="color:#F5F6FA; font-size:14.5px; line-height:1.65; margin:0 0 10px;">StressMap is a stress prediction platform created by <strong>Poorvi Taranagar</strong> and <strong>Dewansh</strong>, built to help students and young professionals understand and manage exam and work-related stress.</p>
+    <p style="color:#9AA0B4; font-size:13.5px; line-height:1.6; margin:0 0 10px;">This is a self-reflection tool, not a medical diagnosis. If things ever feel heavy, please talk to a trusted adult, teacher, or counsellor.</p>
+    <p style="color:#9AA0B4; font-size:13px; line-height:1.6; margin:0;">📍 Taranagar, 331304, Churu, Rajasthan</p>
+  </div>
+</div>
+
+<script>
+function toggleAboutUs(){
+  const el = document.getElementById('aboutUsOverlay');
+  const isOpen = el.style.display === 'flex';
+  el.style.display = isOpen ? 'none' : 'flex';
+}
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){
+    const el = document.getElementById('aboutUsOverlay');
+    if(el.style.display === 'flex') el.style.display = 'none';
+  }
+});
+</script>
+
+<section class="card about-card" aria-label="About StressMap">
+  <div class="eyebrow">About Us</div>
+  <h2 style="margin-top:6px;">Who built StressMap</h2>
+  <p class="sub">
+    StressMap is created and maintained by <b>Poorvi Taranagar</b> and <b>Dewansh</b>, under DEASTERN.
+    It started from a simple observation: most exam-prep tools track marks and mock-test scores, but almost none
+    check in on how the student behind those numbers is actually doing — their sleep, their support system,
+    and the quiet pressure that builds up over months of preparation.
+  </p>
+  <p class="sub">
+    StressMap asks 25 short questions across five areas of daily life — sleep, study pressure, family and social
+    pressure, physical and emotional health, and coping — and turns the answers into a simple, honest snapshot,
+    along with a few practical suggestions to help ease the load.
+  </p>
+  <div class="about-avatars">
+    <div class="about-avatar">PT</div>
+    <div class="about-names"><b>Poorvi Taranagar</b><div class="about-role">Co-founder, DEASTERN</div></div>
+  </div>
+  <div class="about-avatars">
+    <div class="about-avatar alt">D</div>
+    <div class="about-names"><b>Dewansh</b><div class="about-role">Co-founder, DEASTERN</div></div>
+  </div>
+  <div class="footer-note">
+    This is a self-reflection tool, not a medical diagnosis or professional mental-health assessment. If things
+    feel heavy, please talk to a trusted adult, teacher, or counsellor.
+  </div>
+</section>
 
 <script>
 /* ============ 3D HERO OBJECT (Three.js — floating crystal, mouse-reactive) ============ */
@@ -343,7 +399,6 @@
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
   camera.position.set(0,0,7);
 
-  // soft ambient + colored rim lights for a premium glassy look
   scene.add(new THREE.AmbientLight(0x6c63ff, 0.55));
   const keyLight = new THREE.PointLight(0x00e5ff, 2.2, 20);
   keyLight.position.set(4,3,5);
@@ -352,7 +407,6 @@
   rimLight.position.set(-4,-2,-3);
   scene.add(rimLight);
 
-  // faceted crystal: icosahedron core (glassy) + wireframe shell (neon edges)
   const group = new THREE.Group();
   const coreGeo = new THREE.IcosahedronGeometry(1.55, 1);
   const coreMat = new THREE.MeshPhongMaterial({
@@ -367,7 +421,6 @@
   const wire = new THREE.Mesh(wireGeo, wireMat);
   group.add(wire);
 
-  // faint outer halo shell for depth
   const haloGeo = new THREE.IcosahedronGeometry(2.05, 0);
   const haloMat = new THREE.MeshBasicMaterial({ color:0xff4d9d, wireframe:true, transparent:true, opacity:0.10 });
   const halo = new THREE.Mesh(haloGeo, haloMat);
@@ -375,7 +428,6 @@
 
   scene.add(group);
 
-  // bloom-like glow behind the crystal via an additive-blended radial sprite (no postprocessing pass needed)
   function makeGlowTexture(){
     const size = 256;
     const c = document.createElement('canvas'); c.width = c.height = size;
@@ -394,7 +446,6 @@
   glow.position.z = -0.5;
   scene.add(glow);
 
-  // ambient starfield within the 3D scene for parallax depth
   const starGeo = new THREE.BufferGeometry();
   const starCount = reduceMotion ? 0 : 220;
   const starPos = new Float32Array(starCount*3);
@@ -409,7 +460,6 @@
   scene.add(stars);
 
   function placeGroup(){
-    // sits upper-right on desktop, recenters higher on narrow/mobile screens so it clears the card
     const narrow = window.innerWidth < 720;
     group.position.set(narrow?0:2.3, narrow?2.6:0.6, 0);
     glow.position.set(group.position.x, group.position.y, -0.5);
@@ -479,7 +529,6 @@
   }
   loop();
 
-  // Magnetic hover pull for buttons and big tappable options
   function attachMagnetic(el, strength){
     el.addEventListener('mousemove', (e)=>{
       const r = el.getBoundingClientRect();
@@ -503,8 +552,6 @@
       attachMagnetic(el, 0.06);
     });
   }
-  // re-wire after every render() call since innerHTML is replaced each time
-  const originalRender = window.render;
   const observer = new MutationObserver(wireMagnetic);
   observer.observe(document.getElementById('app'), { childList:true, subtree:false });
   wireMagnetic();
@@ -540,7 +587,7 @@ function letterReveal(text){
 
   function buildGalaxy(){
     const count = Math.max(90, Math.min(240, Math.round((W*H)/9000)));
-    const cx = W*0.72, cy = H*0.22; // galaxy core sits upper-right, echoing the moon
+    const cx = W*0.72, cy = H*0.22;
     const arms = 3;
     particles = [];
     for(let i=0;i<count;i++){
@@ -561,7 +608,6 @@ function letterReveal(text){
         parallax: 6 + Math.random()*22
       });
     }
-    // a few slow independent drifting motes across the whole viewport for depth
     drifters = [];
     const driftCount = Math.round(count*0.25);
     for(let i=0;i<driftCount;i++){
@@ -581,7 +627,6 @@ function letterReveal(text){
     mouseY += (targetMouseY-mouseY)*0.02;
     const px = (mouseX-0.5), py = (mouseY-0.5);
 
-    // galaxy core glow
     const cx = W*0.72 + px*10, cy = H*0.22 + py*8;
     const coreGrad = ctx.createRadialGradient(cx,cy,0, cx,cy, Math.max(W,H)*0.28);
     coreGrad.addColorStop(0, 'rgba(108,99,255,0.16)');
@@ -823,8 +868,6 @@ const catMeta = {
     videos:[{id:'dJUTMSq4ldo', t:'Guided meditation for exam stress relief'},{id:'8-nD-NRq5xo', t:'A motivational boost for NEET/JEE aspirants'}] }
 };
 
-/* Persona-specific overrides so tips/videos speak to the right context — a working
-   professional shouldn't see "books" or "NEET JEE" advice, and vice versa. */
 const catMetaOverrides = {
   'Job / Business': {
     sleep:{ videos:[{id:'0tLRhxmjnp4', t:'Fixing your sleep schedule while working (science-backed)'},{id:'euCACO-KtHE', t:'10-minute wind-down meditation for working adults'}] },
@@ -1091,6 +1134,7 @@ function renderAuth(){
       <div class="tab ${isLogin?'active':''}" onclick="setAuthMode('login')">Log in</div>
       <div class="tab ${!isLogin?'active':''}" onclick="setAuthMode('register')">Create account</div>
     </div>
+    <button onclick="toggleAboutUs()" style="width:100%; margin-top:10px; padding:9px 16px; background:transparent; border:1.5px solid rgba(255,255,255,0.14); color:#9AA0B4; font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:13px; border-radius:12px; cursor:pointer;">About Us</button>
     ${isLogin ? `
       <label>Name</label>
       <input type="text" id="loginName" placeholder="e.g. Aarav Sharma">
@@ -1130,7 +1174,10 @@ function renderDashboard(){
   <div class="card">
     <div class="dash-row">
       <div class="brand"><div class="dot"></div><h1>StressMap</h1></div>
-      <button class="btn ghost" style="width:auto; margin:0; padding:8px 14px; font-size:13px;" onclick="doLogout()">Log out</button>
+      <div style="display:flex; gap:8px;">
+        <button class="btn ghost" style="width:auto; margin:0; padding:8px 14px; font-size:13px;" onclick="toggleAboutUs()">About Us</button>
+        <button class="btn ghost" style="width:auto; margin:0; padding:8px 14px; font-size:13px;" onclick="doLogout()">Log out</button>
+      </div>
     </div>
     <div class="eyebrow">Welcome back</div>
     <h2 style="margin-top:6px;">Hi ${firstName} 👋</h2>
