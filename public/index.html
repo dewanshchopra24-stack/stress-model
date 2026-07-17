@@ -334,11 +334,29 @@
 <div id="app"></div>
 
 <div id="aboutUsOverlay" onclick="if(event.target===this) toggleAboutUs()" style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(3,5,18,0.72); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:20px;">
-  <div style="background:#0B0F24; border:1px solid rgba(255,255,255,0.12); border-radius:22px; max-width:460px; width:100%; padding:28px 26px; position:relative; box-shadow:0 40px 100px rgba(0,0,0,0.55);">
+  <div style="background:#0B0F24; border:1px solid rgba(255,255,255,0.12); border-radius:22px; max-width:480px; width:100%; max-height:88vh; overflow-y:auto; padding:28px 26px; position:relative; box-shadow:0 40px 100px rgba(0,0,0,0.55);">
     <button onclick="toggleAboutUs()" style="position:absolute; top:14px; right:16px; background:none; border:none; color:#9AA0B4; font-size:20px; cursor:pointer; line-height:1;">&times;</button>
     <h2 style="font-family:'Space Grotesk', sans-serif; color:#F5F6FA; margin:0 0 12px;">About StressMap</h2>
-    <p style="color:#F5F6FA; font-size:14.5px; line-height:1.65; margin:0 0 10px;">StressMap is a stress prediction platform created by <strong>Poorvi Taranagar</strong> and <strong>Dewansh</strong>, built to help students and young professionals understand and manage exam and work-related stress.</p>
-    <p style="color:#9AA0B4; font-size:13.5px; line-height:1.6; margin:0 0 10px;">This is a self-reflection tool, not a medical diagnosis. If things ever feel heavy, please talk to a trusted adult, teacher, or counsellor.</p>
+    <p style="color:#F5F6FA; font-size:14.5px; line-height:1.65; margin:0 0 12px;">StressMap is a stress-prediction platform built to help exam aspirants and young professionals pause and check in with themselves. Most preparation journeys are measured only in marks, mock-test scores, and ranks — but almost nothing tracks how the person behind those numbers is actually holding up.</p>
+    <p style="color:#F5F6FA; font-size:14.5px; line-height:1.65; margin:0 0 12px;">Through a short, honest set of questions covering sleep, study pressure, family expectations, physical health, and coping habits, StressMap turns everyday feelings into a clear picture — along with a personalised routine and a few practical suggestions to help ease the load, one small step at a time.</p>
+    <div style="margin:16px 0; padding-top:14px; border-top:1px solid rgba(255,255,255,0.10);">
+      <div style="font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#00E5FF; margin-bottom:10px;">Co-founders</div>
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+        <div style="width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg,#6C63FF,#00E5FF); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; color:#fff; font-size:14px; flex-shrink:0;">PT</div>
+        <div>
+          <div style="font-family:'Space Grotesk', sans-serif; font-weight:700; color:#F5F6FA; font-size:14.5px;">Poorvi Taranagar</div>
+          <div style="color:#9AA0B4; font-size:12.5px; margin-top:1px;">Co-founder</div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg,#FF4D9D,#6C63FF); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; color:#fff; font-size:14px; flex-shrink:0;">DC</div>
+        <div>
+          <div style="font-family:'Space Grotesk', sans-serif; font-weight:700; color:#F5F6FA; font-size:14.5px;">Dewansh Chopra</div>
+          <div style="color:#9AA0B4; font-size:12.5px; margin-top:1px;">Co-founder</div>
+        </div>
+      </div>
+    </div>
+    <p style="color:#9AA0B4; font-size:13.5px; line-height:1.6; margin:0 0 10px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.10);">This is a self-reflection tool, not a medical diagnosis. If things ever feel heavy, please talk to a trusted adult, teacher, or counsellor.</p>
     <p style="color:#9AA0B4; font-size:13px; line-height:1.6; margin:0;">📍 Taranagar, 331304, Churu, Rajasthan</p>
   </div>
 </div>
